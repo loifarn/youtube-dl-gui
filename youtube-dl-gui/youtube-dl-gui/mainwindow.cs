@@ -14,11 +14,11 @@ namespace youtube_dl_gui
     public partial class mainwindow : Form
     {
         private Logic logic;
-        private string parameters = " ";
 
         //Getting user downloads folder the lazy way
         private static string userRoot = Environment.GetEnvironmentVariable("USERPROFILE");
         private static string downloadFolder = Path.Combine(userRoot, "Downloads");
+        private string DefaultLocation = $" --output \"{downloadFolder}\\";
 
         public mainwindow()
         {
@@ -30,7 +30,7 @@ namespace youtube_dl_gui
 
         private void Btn_Download_Click(object sender, EventArgs e)
         {
-            logic.DownloadVideo(Tb_URL.Text, parameters);
+            logic.DownloadVideo(Tb_URL.Text, DefaultLocation);
         }
 
         private void Menu_Open_Click(object sender, EventArgs e)

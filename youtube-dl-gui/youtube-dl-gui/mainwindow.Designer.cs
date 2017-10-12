@@ -33,7 +33,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Btn_Download = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.Menu = new System.Windows.Forms.ToolStripMenuItem();
+            this.Menu_Main = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.Label_Location = new System.Windows.Forms.Label();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -71,20 +71,20 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.Menu});
+            this.Menu_Main});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(729, 33);
             this.menuStrip1.TabIndex = 6;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // Menu
+            // Menu_Main
             // 
-            this.Menu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Menu_Main.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.Menu_Open});
-            this.Menu.Name = "Menu";
-            this.Menu.Size = new System.Drawing.Size(69, 29);
-            this.Menu.Text = "Menu";
+            this.Menu_Main.Name = "Menu_Main";
+            this.Menu_Main.Size = new System.Drawing.Size(69, 29);
+            this.Menu_Main.Text = "Menu";
             // 
             // Menu_Open
             // 
@@ -151,7 +151,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button Btn_Download;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem Menu;
+        private System.Windows.Forms.ToolStripMenuItem Menu_Main;
         private System.Windows.Forms.ToolStripMenuItem Menu_Open;
         private System.Windows.Forms.Label Label_Location;
         private System.Windows.Forms.LinkLabel linkLabel1;
