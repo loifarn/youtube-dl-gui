@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace youtube_dl_gui
 {
@@ -11,28 +7,21 @@ namespace youtube_dl_gui
     class Config
     {
         //Properties
-        public string Parameters { get; set; }
         public string YTDL_Location { get; set; }
 
-        //Getting user downloads folder the lazy way
-        private static string _userRoot;
+        //For YTDL arguements
         public string DownloadFolder;
-
-        //Command formatting
         public string DefaultParameters;
-        public string DefaultOutputName;
+        public string DefaultOutputFilename;
 
 
         public Config()
         {
             YTDL_Location = "No youtube-dl.exe found";
 
-            _userRoot = Environment.GetEnvironmentVariable("USERPROFILE");
-            DownloadFolder = Path.Combine(_userRoot, "Downloads");
-
+            DownloadFolder = Path.Combine((Environment.GetEnvironmentVariable("USERPROFILE")), "Downloads");
             DefaultParameters = $" --output \"{DownloadFolder}\\";
-            DefaultOutputName = "%(title)s.%(ext)s\"";
+            DefaultOutputFilename = "%(title)s.%(ext)s\"";
         }
-
     }
 }

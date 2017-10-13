@@ -36,8 +36,8 @@
             this.Menu_Main = new System.Windows.Forms.ToolStripMenuItem();
             this.Menu_Open = new System.Windows.Forms.ToolStripMenuItem();
             this.Label_Location = new System.Windows.Forms.Label();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
+            this.ytdl_link = new System.Windows.Forms.LinkLabel();
+            this.github_link = new System.Windows.Forms.LinkLabel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,8 +93,8 @@
             // Menu_Open
             // 
             this.Menu_Open.Name = "Menu_Open";
-            this.Menu_Open.Size = new System.Drawing.Size(187, 22);
-            this.Menu_Open.Text = "Select youtube-dl.exe";
+            this.Menu_Open.Size = new System.Drawing.Size(165, 22);
+            this.Menu_Open.Text = "Open youtube-dl";
             this.Menu_Open.Click += new System.EventHandler(this.Menu_Open_Click);
             // 
             // Label_Location
@@ -107,35 +107,37 @@
             this.Label_Location.TabIndex = 7;
             this.Label_Location.Text = "youtube-dl location: ";
             // 
-            // linkLabel1
+            // ytdl_link
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(383, 77);
-            this.linkLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(56, 13);
-            this.linkLabel1.TabIndex = 8;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "youtube-dl";
+            this.ytdl_link.AutoSize = true;
+            this.ytdl_link.Location = new System.Drawing.Point(383, 77);
+            this.ytdl_link.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.ytdl_link.Name = "ytdl_link";
+            this.ytdl_link.Size = new System.Drawing.Size(56, 13);
+            this.ytdl_link.TabIndex = 8;
+            this.ytdl_link.TabStop = true;
+            this.ytdl_link.Text = "youtube-dl";
+            this.ytdl_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.ytdl_link_LinkClicked);
             // 
-            // linkLabel2
+            // github_link
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(443, 77);
-            this.linkLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(36, 13);
-            this.linkLabel2.TabIndex = 9;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "github";
+            this.github_link.AutoSize = true;
+            this.github_link.Location = new System.Drawing.Point(443, 77);
+            this.github_link.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.github_link.Name = "github_link";
+            this.github_link.Size = new System.Drawing.Size(36, 13);
+            this.github_link.TabIndex = 9;
+            this.github_link.TabStop = true;
+            this.github_link.Text = "github";
+            this.github_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.github_link_LinkClicked);
             // 
             // mainwindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(486, 96);
-            this.Controls.Add(this.linkLabel2);
-            this.Controls.Add(this.linkLabel1);
+            this.Controls.Add(this.github_link);
+            this.Controls.Add(this.ytdl_link);
             this.Controls.Add(this.Label_Location);
             this.Controls.Add(this.Btn_Download);
             this.Controls.Add(this.label2);
@@ -163,8 +165,8 @@
         private System.Windows.Forms.ToolStripMenuItem Menu_Main;
         private System.Windows.Forms.ToolStripMenuItem Menu_Open;
         private System.Windows.Forms.Label Label_Location;
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.LinkLabel linkLabel2;
+        private System.Windows.Forms.LinkLabel ytdl_link;
+        private System.Windows.Forms.LinkLabel github_link;
     }
 }
 

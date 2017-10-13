@@ -1,20 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace youtube_dl_gui
 {
     class Logic
     {
-        //Classes
         private Config _config;
         private string _configFilepath;
 
@@ -25,17 +20,17 @@ namespace youtube_dl_gui
             LoadConfig();
         }
 
-        //Runs youtube-dl with given url and params.
+        //Runs youtube-dl with given url and arguements.
         public void DownloadVideo(string url)
         {
-            string command = url + _config.DefaultParameters + _config.DefaultOutputName;
+            string arguements = url + _config.DefaultParameters + _config.DefaultOutputFilename;
 
             try
             {
                 using(Process p = new Process())
                 {
                     p.StartInfo.FileName = _config.YTDL_Location;
-                    p.StartInfo.Arguments = command;
+                    p.StartInfo.Arguments = arguements;
                     p.Start();
                     p.WaitForExit();
                     MessageBox.Show($"File downloaded to {_config.DownloadFolder}");
@@ -89,6 +84,7 @@ namespace youtube_dl_gui
             }
         }
 
+        //YTDL
         public void NewYTDL()
         {
             using (OpenFileDialog ofd = new OpenFileDialog())
@@ -102,6 +98,5 @@ namespace youtube_dl_gui
         {
             return _config.YTDL_Location;
         }
-
     }
 }

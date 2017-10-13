@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace youtube_dl_gui
@@ -44,6 +37,16 @@ namespace youtube_dl_gui
         private void mainwindow_FormClosed(object sender, FormClosedEventArgs e)
         {
             logic.SaveConfig();
+        }
+
+        private void github_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://github.com/loifarn/youtube-dl-gui");
+        }
+
+        private void ytdl_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("https://rg3.github.io/youtube-dl/download.html");
         }
     }
 }
