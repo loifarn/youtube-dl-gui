@@ -15,28 +15,35 @@ namespace youtube_dl_gui
     {
         private Logic logic;
 
-
-
         public mainwindow()
         {
             InitializeComponent();
             logic = new Logic();
-            logic.Filename = "";
+            Label_Location.Text = $"youtube-dl location: {logic.GetYTDL()}";
         }
 
         private void Btn_Download_Click(object sender, EventArgs e)
         {
-            logic.DownloadVideo(Tb_URL.Text);
+            if(Tb_URL.Text.Length > 1)
+            {
+                logic.DownloadVideo(Tb_URL.Text);
+            }
+            else
+            {
+                MessageBox.Show("Please enter a url");
+            }
+            
         }
 
         private void Menu_Open_Click(object sender, EventArgs e)
         {
-           using(OpenFileDialog ofd = new OpenFileDialog())
-            {
-                ofd.ShowDialog();
-                logic.Filename = ofd.FileName;
-                Label_Location.Text = $"youtube-dl location: {logic.Filename}";
-            }
+            logic.NewYTDL();
+            Label_Location.Text = $"youtube-dl location: {logic.GetYTDL()}";
+        }
+
+        private void mainwindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            logic.SaveConfig();
         }
     }
 }

@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -12,28 +14,32 @@ namespace youtube_dl_gui
 {
     class Logic
     {
-        public string Filename { get; set; }
-        private string DefaultName = "%(title)s.%(ext)s\"";
-
-        //Getting user downloads folder the lazy way
-        private static string userRoot = Environment.GetEnvironmentVariable("USERPROFILE");
-        private static string downloadFolder = Path.Combine(userRoot, "Downloads");
-        private string DefaultParameters = $" --output \"{downloadFolder}\\";
+        //Classes
+        private Config _config;
+        private string _configFilepath;
 
         public Logic()
         {
-
+            _config = new Config();
+            _configFilepath = Path.Combine(Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location), "Config.bin");
+            LoadConfig();
         }
 
-        //Downloads entered video from URL
-
+        //Runs youtube-dl with given url and params.
         public void DownloadVideo(string url)
         {
-            string command = url + DefaultParameters + DefaultName;
+            string command = url + _config.DefaultParameters + _config.DefaultOutputName;
 
             try
             {
-                Process.Start(Filename, command);
+                using(Process p = new Process())
+                {
+                    p.StartInfo.FileName = _config.YTDL_Location;
+                    p.StartInfo.Arguments = command;
+                    p.Start();
+                    p.WaitForExit();
+                    MessageBox.Show($"File downloaded to {_config.DownloadFolder}");
+                }
             }
             catch(Win32Exception ex)
             {
@@ -43,22 +49,58 @@ namespace youtube_dl_gui
             {
                 MessageBox.Show(ex.Message);
             }
+            
         }
 
         //Config methods
-        public void LoadDefaultConfig()
+        public void LoadConfig()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (FileStream fs = new FileStream(_configFilepath, FileMode.OpenOrCreate, FileAccess.Read))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    _config = (Config)bf.Deserialize(fs);
+                }
+            }
+            catch(ArgumentNullException)
+            {
+                MessageBox.Show("No youtube-dl.exe found");
+            }
+            catch(SerializationException)
+            {
+                MessageBox.Show("No youtube-dl.exe found");
+            }
         }
 
-        public void LoadNewConfig()
+        public void SaveConfig()
         {
-            throw new NotImplementedException();
+            try
+            {
+                using (FileStream fs = new FileStream(_configFilepath, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    BinaryFormatter bf = new BinaryFormatter();
+                    bf.Serialize(fs, _config);
+                }
+            }
+            catch(IOException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
-        public void SaveNewConfig()
+        public void NewYTDL()
         {
-            throw new NotImplementedException();
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.ShowDialog();
+                _config.YTDL_Location = ofd.FileName;
+            }
+        }
+
+        public string GetYTDL()
+        {
+            return _config.YTDL_Location;
         }
 
     }
